@@ -9,6 +9,7 @@ Specification:
 * Delete a specific course using an ID
 * Authentication and authorization are not needed but think through how you would make
 that work.
+
 Technology:
 * Ruby
 * Ruby on Rails
