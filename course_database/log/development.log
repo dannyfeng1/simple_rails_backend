@@ -1,0 +1,21 @@
+  [1m[35m (1956.5ms)[0m  [1m[35mCREATE DATABASE "course_database_development" ENCODING = 'unicode'[0m
+  [1m[35m (2350.8ms)[0m  [1m[35mCREATE DATABASE "course_database_test" ENCODING = 'unicode'[0m
+  [1m[35m (271.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (237.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2429614686346925910)[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCourses (20211209232502)
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (305.6ms)[0m  [1m[35mCREATE TABLE "courses" ("id" bigserial primary key, "name" character varying NOT NULL, "release_date" date NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211209232502"]]
+  [1m[36mTRANSACTION (39.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-12-09 23:32:53.491299"], ["updated_at", "2021-12-09 23:32:53.491299"]]
+  [1m[36mTRANSACTION (26.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(2429614686346925910)[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCourse Create (1.5ms)[0m  [1m[32mINSERT INTO "courses" ("name", "release_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Javascript"], ["release_date", "2021-12-22"], ["created_at", "2021-12-09 23:45:04.563994"], ["updated_at", "2021-12-09 23:45:04.563994"]]
+  [1m[36mTRANSACTION (67.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
