@@ -1,6 +1,8 @@
 class CoursesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
-    @courses = Courses.all
+    @courses = Course.all
     render :index
   end
 
@@ -25,7 +27,7 @@ class CoursesController < ApplicationController
   end
 
   def update
-    @course = Course.find_by(id: params[:course][:id])
+    @course = Course.find_by(id: params[:id])
 
     if @course.nil? 
       render json: ["Course does not exist."], status: 404
@@ -40,6 +42,7 @@ class CoursesController < ApplicationController
     @course = Course.find_by(id: params[:id])
     if @course
       @course.destroy
+      render :show
     else
       render json: ["No course with that id."], status: 404
     end
